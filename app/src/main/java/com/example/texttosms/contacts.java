@@ -29,14 +29,11 @@ import java.util.List;
 
 public class contacts extends AppCompatActivity {
     String phoneNum;
-    ListView contactsListView;
-    // Store all phone contacts list.
-    // Each String format is " DisplayName \r\n Phone Number \r\n Phone Type " ( Jerry \r\n 111111 \r\n Home) .
+    ListView contactsListView;  // store all phone contacts list.
+                                // Each contact is form of " Name \r\n Phone Number \r\n Phone Type "
     private List<String> phoneContactsList = new ArrayList<String>();
-
     // This is the phone contacts list view's data adapter.
     private ArrayAdapter<String> contactsListDataAdapter;
-
     private int PERMISSION_REQUEST_CODE_READ_CONTACTS = 1;
 
     @Override
@@ -51,49 +48,13 @@ public class contacts extends AppCompatActivity {
         if(!hasPhoneContactsPermission(Manifest.permission.READ_CONTACTS))
         {
             requestPermission(Manifest.permission.READ_CONTACTS, PERMISSION_REQUEST_CODE_READ_CONTACTS);
-        }else
-        {
+        }else{
             readPhoneContacts();
         }
-//        contactList = (ListView) findViewById(R.id.contactsList);
-//        Cursor cursor = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-//                null, null, null, null);
-//        startManagingCursor(cursor);
-//
-//        String[] from = {ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
-//        ContactsContract.CommonDataKinds.Phone.NUMBER,
-//        ContactsContract.CommonDataKinds.Phone._ID};
-//
-//        int[] to = {android.R.id.text1, android.R.id.text2};
-//
-//        SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_2, cursor, from, to);
-//        contactList.setAdapter(simpleCursorAdapter);
-//        contactList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-//     }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.search_menu, menu);
-//        MenuItem item = menu.findItem(R.id.contactsList);
-//        SearchView searchView = (SearchView) item.getActionView();
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                adap
-//                return false;
-//            }
-//        });
-//    };
     }
     private boolean hasPhoneContactsPermission(String permission)
     {
-        boolean ret = false;
+        boolean permis = false;
 
         // If android sdk version is bigger than 23 the need to check run time permission.
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -102,13 +63,13 @@ public class contacts extends AppCompatActivity {
             int hasPermission = ContextCompat.checkSelfPermission(getApplicationContext(), permission);
             // If permission is granted then return true.
             if (hasPermission == PackageManager.PERMISSION_GRANTED) {
-                ret = true;
+                permis = true;
             }
         }else
         {
-            ret = true;
+            permis = true;
         }
-        return ret;
+        return permis;
     }
     // Request a runtime permission to app user.
     private void requestPermission(String permission, int requestCode)
@@ -171,27 +132,27 @@ public class contacts extends AppCompatActivity {
                 int phoneNumberIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
                 String phoneNumber = cursor.getString(phoneNumberIndex);
 
-                // Get contact phone type.
-                String phoneTypeStr = "Mobile";
-                int phoneTypeColumnIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TYPE);
-                int phoneTypeInt = cursor.getInt(phoneTypeColumnIndex);
-                if(phoneTypeInt== ContactsContract.CommonDataKinds.Phone.TYPE_HOME)
-                {
-                    phoneTypeStr = "Home";
-                }else if(phoneTypeInt== ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE)
-                {
-                    phoneTypeStr = "Mobile";
-                }else if(phoneTypeInt== ContactsContract.CommonDataKinds.Phone.TYPE_WORK)
-                {
-                    phoneTypeStr = "Work";
-                }
+//                // Get contact phone type.
+//                String phoneTypeStr = "Mobile";
+//                int phoneTypeColumnIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TYPE);
+//                int phoneTypeInt = cursor.getInt(phoneTypeColumnIndex);
+//                if(phoneTypeInt== ContactsContract.CommonDataKinds.Phone.TYPE_HOME)
+//                {
+//                    phoneTypeStr = "Home";
+//                }else if(phoneTypeInt== ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE)
+//                {
+//                    phoneTypeStr = "Mobile";
+//                }else if(phoneTypeInt== ContactsContract.CommonDataKinds.Phone.TYPE_WORK)
+//                {
+//                    phoneTypeStr = "Work";
+//                }
 
                 StringBuffer contactStringBuf = new StringBuffer();
                 contactStringBuf.append(userDisplayName);
                 contactStringBuf.append("\r\n");
                 contactStringBuf.append(phoneNumber);
-                contactStringBuf.append("\r\n");
-                contactStringBuf.append(phoneTypeStr);
+//                contactStringBuf.append("\r\n");
+//                contactStringBuf.append(phoneTypeStr);
 
                 phoneContactsList.add(contactStringBuf.toString());
             }while(cursor.moveToNext());
@@ -202,9 +163,7 @@ public class contacts extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     System.out.println(phoneContactsList.get(position));
-                    System.out.println("*******************");
                     System.out.println(phoneContactsList.get(position).length());
-                    System.out.println("*****************************");
                     String[] lines = phoneContactsList.get(position).split(System.getProperty("line.separator"));
                     System.out.println(lines[1]);
                     phoneNum = lines[1].toString();

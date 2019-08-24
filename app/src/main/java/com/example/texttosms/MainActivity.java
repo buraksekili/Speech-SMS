@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView sms;
     private final int CODE = 123;
+    private final int requestCODE = 1;
     private Button btnSms;
     private EditText inputPhoneNum;
 
@@ -41,14 +42,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    // ************** == RECORDING SPEECH IN ORDER TO SEND AS SMS == ***************************
+    // **************  RECORDING SPEECH IN ORDER TO SEND AS SMS  **************
     public void recordSpeech(View view) {
 
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
 
-        if (intent.resolveActivity(getPackageManager()) != null) {
+        if (intent.resolveActivity(getPackageManager()) != null) { // check if phone has proper activity to record speech.
             startActivityForResult(intent, CODE);
 
         } else {
@@ -59,29 +60,26 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case CODE:
-                if (resultCode == RESULT_OK && data != null) {
-                    ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    sms.setText(result.get(0));
-                    showSendButton();
-                }
-                break;
+        if (requestCode == CODE) {
+            if (resultCode == RESULT_OK && data != null) {
+                ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                sms.setText(result.get(0));
+                showSendButton();
+            }
         }
 
-        if (requestCode == 1){
+        if (requestCode == requestCODE){
             if (resultCode == RESULT_OK){
                 String phoneNum = data.getStringExtra("no");
                 inputPhoneNum.setText(phoneNum);
             }
         }
-
     }
 
     // It will display the activity that consists of the list of contacts.
     public void showContacts(View view) {
         Intent intent = new Intent(this, contacts.class);
-        startActivityForResult(intent, 1);
+        startActivityForResult(intent, requestCODE);
     }
 
     public void clearSMS(View view) {
