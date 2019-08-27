@@ -8,13 +8,12 @@
     android:orientation="vertical"
     tools:context=".contacts">
 
-    <ListView
-
-        android:id="@+id/contactsListView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="25dp"
-        android:layout_marginBottom="15dp"
-        android:textAlignment="center"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="4dp"
+        android:id="@+id/recyclerView"
+        android:scrollbars="vertical"
+        />
 
 </LinearLayout>

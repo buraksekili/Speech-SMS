@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.app.Instrumentation;
 import android.content.Intent;
@@ -71,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == requestCODE){
             if (resultCode == RESULT_OK){
                 String phoneNum = data.getStringExtra("no");
+                System.out.println(phoneNum);
                 inputPhoneNum.setText(phoneNum);
             }
         }
@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
     // It will display the activity that consists of the list of contacts.
     public void showContacts(View view) {
+        System.out.println("********\nCONTACTS\n********");
         Intent intent = new Intent(this, contacts.class);
         startActivityForResult(intent, requestCODE);
     }
@@ -85,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
     public void clearSMS(View view) {
         sms.setText("");
         sms.setHint("Message: ");
+        inputPhoneNum.setText("");
         btnSms.setVisibility(View.GONE);
     }
 
