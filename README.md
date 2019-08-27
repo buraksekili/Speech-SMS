@@ -9,3 +9,8 @@ In case of Turkey (Turkey's phone code is +90)
 
 ### 24.08.2019
 - Search menu is added to facilitate searching in 'contact activity'.
+
+### 27.08.2019
+- 'Recylerview widget' is replaced 'listview'.
+- Adapter showed wrong contact after filtering (SOLVED).
+- Now, contacts are in alphabetical order.
