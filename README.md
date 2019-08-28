@@ -14,3 +14,7 @@ In case of Turkey (Turkey's phone code is +90)
 - 'Recylerview widget' is replaced 'listview'.
 - Adapter showed wrong contact after filtering (SOLVED).
 - Now, contacts are in alphabetical order.
+
+### 28.08.2019
+- Now, user will face an "AlertDialog" after hitting "send" button.
+- "MainActivity"'s screen, launcher activity's screen, is going to scroll up when the keyboard appears
