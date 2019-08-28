@@ -12,24 +12,34 @@
         android:layout_height="wrap_content"
         android:text="@string/how_to_use_app"
         android:textSize="15dp"
+        android:textStyle="bold|italic"
         android:layout_gravity="center_horizontal"
         android:layout_margin="20dp"/>
-    <ImageView
-        android:onClick="recordSpeech"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/mic"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"/>
 
-    <TextView
-        android:id="@+id/textInput"
-        android:hint="Message:"
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15dp"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"/>
+        android:elevation="5dp"
+        android:onClick="recordSpeech"
+        android:src="@drawable/mic" />
+    <ScrollView
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center">
+        <TextView
+            android:id="@+id/textInput"
+            android:hint="Message: "
+            android:paddingTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:textStyle="italic"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            />
+    </ScrollView>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,7 +50,8 @@
             android:layout_width="wrap_content"
             android:onClick="showContacts"
             android:layout_height="wrap_content"
-            android:hint="CONTACS"/>
+            android:hint="CONTACS"
+            />
         <Button
             android:onClick="clearSMS"
             android:layout_width="wrap_content"
@@ -63,7 +74,7 @@
         <Button
             android:layout_width="wrap_content"
             android:id="@+id/btnSend"
-            android:onClick="sendMessage"
+            android:onClick="openDialog"
             android:layout_height="wrap_content"
             android:hint="Send"
             android:visibility="gone"/>

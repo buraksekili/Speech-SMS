@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.Instrumentation;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -87,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         sms.setText("");
         sms.setHint("Message: ");
         inputPhoneNum.setText("");
-        btnSms.setVisibility(View.GONE);
+        hideSendButton();
     }
 
     private void requestSmsPermission() {
@@ -116,7 +118,9 @@ public class MainActivity extends AppCompatActivity {
 
     // 17.08.2019 -> Permission issue is solved through request permission via Java code as above(requestSmsPermission() function).
     public void sendMessage(View view) {
+
         btnSms.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 try{
@@ -131,13 +135,44 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+    private void sendSMS() {
+        try{
+            SmsManager smgr = SmsManager.getDefault();
+            smgr.sendTextMessage(inputPhoneNum.getText().toString(),null,sms.getText().toString(),null,null);
+            Toast.makeText(MainActivity.this, "SMS Sent Successfully", Toast.LENGTH_SHORT).show();
+        }
+        catch (Exception e){
+            Toast.makeText(MainActivity.this, "SMS Failed to Send, Please try again", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
     public void showSendButton(){
         if (sms.length() > 0)
         {
             btnSms.setVisibility(View.VISIBLE);
         }
     }
+
     public void hideSendButton(){
         btnSms.setVisibility(View.GONE);
+    }
+
+    public void openDialog(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        })
+                .setTitle("Sending Sms").setMessage("Are you sure to send sms?")
+                .setPositiveButton("Send", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        sendSMS();
+                    }
+                }).show();
     }
 }
