@@ -1,4 +1,4 @@
-  <h1 align = "center"> SpeechMS
+  <h1 align = "center"> SpeechMS </h1>
   <p align="center">
     <img src="app/src/main/res/drawable/logo.png">
     
