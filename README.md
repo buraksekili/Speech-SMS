@@ -1,4 +1,6 @@
-# Speech-SMS
+<p align="center">
+  <img src="app/src/main/res/drawable/logo.png">
+</p>
 
 This app enables you to send SMS through speech recording.
 
@@ -18,3 +20,15 @@ In case of Turkey (Turkey's phone code is +90)
 ### 28.08.2019
 - Now, user will face an "AlertDialog" after hitting "send" button.
 - "MainActivity"'s screen, launcher activity's screen, is going to scroll up when the keyboard appears
+
+### 30.08.2019
+- App's logo is added.
+- Splash screen is added.
+
+## Screenshots
+<p align = "center">
+  <img src="screenshots/splashScreen.png" width="200" />
+  <img src="screenshots/MainActivity.png" width="200" /> 
+  <img src="screenshots/contacts.png" width="200" />
+  <img src="screenshots/searchView.png" width="200" />
+</p>
