@@ -2,6 +2,7 @@ package com.example.texttosms;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.MenuItemCompat;
@@ -46,7 +47,6 @@ public class contacts extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
-        System.out.println("********\nON CREATE\n********");
 
         mRecyclerView = findViewById(R.id.recyclerView);
 

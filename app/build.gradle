@@ -27,4 +27,5 @@ dependencies {
     implementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'gr.pantrif:easy-android-splash-screen:0.0.1'
 }

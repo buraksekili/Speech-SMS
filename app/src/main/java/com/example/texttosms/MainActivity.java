@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getSupportActionBar().hide();
+
         btnSms = (Button) findViewById(R.id.btnSend);
         sms = (TextView) findViewById(R.id.textInput);
         inputPhoneNum = (EditText) findViewById(R.id.mblTxt);
