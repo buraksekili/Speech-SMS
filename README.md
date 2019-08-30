@@ -1,6 +1,10 @@
-<p align="center">
-  <img src="app/src/main/res/drawable/logo.png">
-</p>
+  <h1 align = "center"> SpeechMS
+  <p align="center">
+    <img src="app/src/main/res/drawable/logo.png">
+    
+  </p>
+
+
 
 This app enables you to send SMS through speech recording.
 
